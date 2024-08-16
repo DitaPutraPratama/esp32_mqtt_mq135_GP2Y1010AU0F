@@ -27,4 +27,4 @@ gunakan Arduino IDE untuk mengembangkan kode ini degan lebih mudah
 -   jika ada pertanyaan kirim email ke ditaputra1296@gmail.com
 -   Repository ini terhubung dengan [react_simple_semi_realtime](https://github.com/DitaPutraPratama/react_simple_semi_realtime) dan [express_mqtt_mysql](https://github.com/DitaPutraPratama/express_mqtt_mysql) agar menjadi 1 proyek IoT
 
-![Gambar Rangkaian](./mqtt_komunikasi_v2.ino)
+![Gambar Rangkaian](./rangkyan.png)
