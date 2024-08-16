@@ -14,8 +14,8 @@
 #define ADC_Bit_Resolution 12
 #define RatioMQ135CleanAir 3.6
 
-#define WIFI_SSID "moon link | elon ming"       
-#define WIFI_PASSWORD "10000000"  
+#define WIFI_SSID "your ssid wifi"       
+#define WIFI_PASSWORD "your password"  
 
 const uint8_t SHARP_LED_PIN = 16;
 const uint8_t SHARP_VO_PIN = 36;
@@ -30,7 +30,7 @@ LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);
 GP2YDustSensor dustSensor(GP2YDustSensorType::GP2Y1014AU0F, SHARP_LED_PIN, SHARP_VO_PIN);
 MQUnifiedsensor MQ135(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
 
-const char* mqttBroker = "test.mosquitto.org";  
+const char* mqttBroker = "test.mosquitto.org"; //sesuaikan broker yang digunakan, saya menggunakan mosquitto mqtt
 
 WiFiClient espClient;          
 PubSubClient mqtt(espClient);  
@@ -194,6 +194,8 @@ void loop() {
   float COmgm3 = COppm * molarMassCO / 24.45;
   float COmug3 = COmgm3 * 1000.0;
 
+  //kode yang dikomen ini digunakan jika kamu belum memasang sensor pada ESP 32
+
   // DynamicJsonDocument doc(200); 
   // doc["temp"] = String(random(0, 120)); 
   // doc["hum"] = String(random(0, 120)); 
@@ -205,7 +207,7 @@ void loop() {
   String sensorValue;               
   serializeJson(doc, sensorValue);  
 
-  mqtt.publish("dita/data6snAr", sensorValue.c_str());  
+  mqtt.publish("topik/topik_spesifik_esp", sensorValue.c_str()); //ubah topik sesuai kebutuhan
   mqtt.loop();                                     
 
   Serial.println("");
@@ -236,7 +238,7 @@ void connectMQTT() {
     if (mqtt.connect(clientId.c_str())) {
       Serial.println("connected");
       
-      mqtt.subscribe("dita/val9fII5");  
+      mqtt.subscribe("topik/spesifik_express"); //ubah topik sesuai kebutuhan
     } else {
       Serial.print("failed, rc=");
       Serial.print(mqtt.state());
